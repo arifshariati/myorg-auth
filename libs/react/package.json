@@ -1,6 +1,7 @@
 {
   "name": "@myorg-auth/react",
   "version": "0.0.2",
+  "private": false,
   "main": "./index.js",
   "types": "./index.d.ts",
   "exports": {
