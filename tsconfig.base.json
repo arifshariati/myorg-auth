@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@myorg-auth/react": ["libs/react/src/index.ts"]
+      "@myorg-auth/react": ["libs/react/src/index.ts"],
+      "@myorg-auth/server": ["libs/server/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
