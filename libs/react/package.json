@@ -1,5 +1,8 @@
 {
   "name": "@myorg-auth/react",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.0.3",
   "private": false,
   "main": "./index.js",
