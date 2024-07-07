@@ -1,3 +1,15 @@
+## 0.0.5 (2024-07-07)
+
+
+### 🩹 Fixes
+
+- **core:** added conventional commits as true ([f6b4e1b](https://github.com/arifshariati/myorg-auth/commit/f6b4e1b))
+- **server:** added rocket icon output ([dad85ad](https://github.com/arifshariati/myorg-auth/commit/dad85ad))
+
+### ❤️  Thank You
+
+- Arif Shariati @arifshariati
+
 ## 0.0.4 (2024-07-07)
 
 
