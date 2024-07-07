@@ -1,3 +1,14 @@
+## 0.0.6 (2024-07-07)
+
+
+### 🩹 Fixes
+
+- **server:** removed rocket sign ([e2311d0](https://github.com/arifshariati/myorg-auth/commit/e2311d0))
+
+### ❤️  Thank You
+
+- Arif Shariati @arifshariati
+
 ## 0.0.5 (2024-07-07)
 
 
