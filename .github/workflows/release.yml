@@ -17,8 +17,14 @@ defaults:
     shell: bash
 
 permissions:
-  actions: read
-  contents: read
+  actions: write
+  contents: write
+  issues: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
 
 jobs:
   release:
@@ -41,7 +47,7 @@ jobs:
       - name: Setup Node.JS
         uses: actions/setup-node@v3
         with:
-          # node-version: 20
+          node-version: 20
           cache: 'npm'
 
       - name: Install dependencies
@@ -60,10 +66,14 @@ jobs:
       - name: Affected (Lint, Test, Build, e2e)
         run: npx nx affected -t lint test build e2e-ci
 
+      - name: Debug environment variables
+        run: env
+
       - name: Release with Nx
         run: npx nx release --yes
         env:
           GIT_USER_NAME: ${{secrets.GIT_USER_NAME}}
           GIT_USER_EMAIL: ${{secrets.GIT_USER_EMAIL}}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
           NPM_CONFIG_PROVERANCE: true
