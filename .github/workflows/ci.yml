@@ -3,6 +3,8 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+
 permissions:
   actions: read
   contents: read
@@ -10,8 +12,8 @@ jobs:
   main:
     runs-on: ubuntu-latest
     permissions:
-        contents: read
-        id-token: write # needed for proverance data generation
+      contents: read
+      id-token: write # needed for proverance data generation
     timeout-minutes: 10
 
     steps:
