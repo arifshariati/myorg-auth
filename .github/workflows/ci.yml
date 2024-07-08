@@ -37,10 +37,21 @@ jobs:
       - name: Print Environment Info
         run: npx nx report
         shell: bash
-      - run: npx nx affected -t lint test build e2e-ci
 
-      - name: Publish packages
-        run: npx nx release publish
+      - name: Lint
+        run: npm run lint:affected
+        shell: bash
+
+      - name: Build
+        run: npm run build:affected
+        shell: bash
+
+      - name: test
+        run: npm run test:affected
+        shell: bash
+
+      - name: Release and Publish
+        run: npm run release
         shell: bash
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
