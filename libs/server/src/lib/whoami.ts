@@ -1,1 +1,1 @@
-export const whoami = () => 'I am server 🔥🔥🔥🚀';
+export const whoami = () => 'I am server 🔥🔥🔥🚀🚀';

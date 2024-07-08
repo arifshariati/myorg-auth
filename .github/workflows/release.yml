@@ -62,7 +62,7 @@ jobs:
         run: |
           git config user.name "Release Bot"
           git config user.email "<>"
-          npx nx release --yest
+          npx nx release --yes
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVERANCE: true
