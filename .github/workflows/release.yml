@@ -49,20 +49,21 @@ jobs:
 
       - uses: nrwl/nx-set-shas@v4
 
-      - name: Print Environment Info
-        run: npx nx report
-
-      - name: Build
-        run: npx nx run-many --t build --parallel 2
-
-      - name: test
-        run: npx nx run-many -t test --parallel 2
-
-      - name: Release
+      - name: Set up git user
         run: |
-          git config user.name "Release Bot"
-          git config user.email "<>"
-          npx nx release --yes
+          git config --global user.name "${{secrets.GIT_USER_NAME}}"
+          git config --global user.email "${{secrets.GIT_USER_EMAIL}}"
+
+      - name: Set up npm authentication
+        run: npm set //registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}
+
+      - name: Affected (Lint, Test, Build, e2e)
+        run: npx nx affected -t lint test build e2e-ci
+
+      - name: Release with Nx
+        run: npx nx release --yes
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GIT_USER_NAME: ${{secrets.GIT_USER_NAME}}
+          GIT_USER_EMAIL: ${{secrets.GIT_USER_EMAIL}}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVERANCE: true
