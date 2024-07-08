@@ -11,10 +11,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            with:
+              with:
                 fetch-depth: 0
             - uses: actions/setup-node@v3
-            with:
+              with:
                 node-version: 20
                 cache: 'npm'
             - run: npm ci
