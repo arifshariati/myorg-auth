@@ -5,54 +5,83 @@ on:
   pull_request:
   workflow_dispatch:
 
+concurrency:
+  group: '${{ github.workflow }} - ${{ github.head_ref || github.ref }}'
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+env:
+  PRIMARY_NODE_VERSION: 20
+  # This increases the verbosity of the logs for everything, including Nx Cloud, but will hopefully surface more info about recent lint failures
+  NX_VERBOSE_LOGGING: true
+
+defaults:
+  run:
+    shell: bash
+
 permissions:
   actions: read
   contents: read
+
 jobs:
   main:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write # needed for proverance data generation
-    timeout-minutes: 10
+
+    if: ${{ github.event_name != 'pull_request' }}
 
     steps:
-      - name: Checkout repository
+      - name: Checkout [${{github.ref_name}}]
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Install Node
+      - name: Setup Node.Js
         uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
-        shell: bash
 
       - uses: nrwl/nx-set-shas@v4
 
       - name: Print Environment Info
         run: npx nx report
-        shell: bash
 
       - name: Lint
         run: npm run lint:affected
-        shell: bash
 
       - name: Build
-        run: npm run build:affected
-        shell: bash
+        run: npx nx run-many -t build --parallel 2
 
       - name: test
-        run: npm run test:affected
-        shell: bash
+        run: npx nx run-many -t test --parallel 2
 
-      - name: Release and Publish
-        run: npm run release
-        shell: bash
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_CONFIG_PROVERANCE: true
+  PR:
+    runs-on: ubuntu-latest
+
+    if: ${{github.event_name == 'pull_request'}}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+          fetch-depth: 0
+      - uses: nrwl/nx-set-shas@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Commit Lint
+        run: npx commitlint --from ${{github.event.pull_request.base.sha}} --to ${{github.event.pull_request.head.sha}} --verbose
+
+      - name: Build
+        run: npx nx run-many -t lint --all --parallel 2
+
+      - name: Test
+        run: npx nx run-many -t test --ci --code-coverage --all --parallel 2
+
+      - name: Lint
+        run: npx nx run-many -t lint --all --parallel 2
