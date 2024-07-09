@@ -3,6 +3,6 @@ type MyComponentProps = {
 };
 
 export const MyComponent = ({ children }: MyComponentProps) => {
-  console.log('MyComponent is called and 🔥🔥🔥🚀🚀✅✅🔴');
+  console.log('MyComponent is called and 🔥🔥🔥🚀🚀✅✅🔴🚀');
   return <div>{children}</div>;
 };
