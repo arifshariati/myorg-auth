@@ -63,8 +63,8 @@ jobs:
       - name: Set up npm authentication
         run: npm set //registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}
 
-      - name: Affected (Lint, Test, Build, e2e)
-        run: npx nx affected -t lint test build e2e-ci
+      - name: Lint, Test, Build and E2E (Lint, Test, Build, e2e)
+        run: npx nx run-many -t lint test build e2e-ci
 
       - name: Debug environment variables
         run: env
