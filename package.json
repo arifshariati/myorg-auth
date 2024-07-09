@@ -8,7 +8,8 @@
     "test:affected": "npx nx affected -t test --parallel 4 --verbose",
     "release": "npx nx release",
     "publish": "npm run build:all && npm run release",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": ""
   },
   "private": true,
   "devDependencies": {
