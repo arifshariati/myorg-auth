@@ -64,16 +64,16 @@ jobs:
         run: npm set //registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}
 
       - name: Lint 
-        run: npx nx run-many -t lint
+        run: npx nx run-many -t lint --verbose
       
       - name: Build
-        run: npx nx run-many -t build
+        run: npx nx run-many -t build --verbose
       
       - name: Test
-        run: npx nx run-many -t test 
+        run: npx nx run-many -t test --verbose
       
       - name: e2e
-        run: npx nx run-many -t e2e-ci
+        run: npx nx run-many -t e2e-ci --verbose
 
       - name: Debug environment variables
         run: env
