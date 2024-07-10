@@ -36,11 +36,19 @@
       "options": {
         "targetName": "test"
       }
+    },
+    {
+      "plugin": "@nx/rollup/plugin",
+      "options": {
+        "buildTargetName": "build"
+      }
     }
   ],
   "generators": {
     "@nx/react": {
-      "library": {}
+      "library": {
+        "unitTestRunner": "jest"
+      }
     }
   },
   "targetDefaults": {

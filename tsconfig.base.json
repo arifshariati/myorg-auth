@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@myorg-auth/react": ["libs/react/src/index.ts"],
+      "@myorg-auth/rreact": ["libs/rreact/src/index.ts"],
       "@myorg-auth/server": ["libs/server/src/index.ts"]
     }
   },
