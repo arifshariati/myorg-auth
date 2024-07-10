@@ -76,7 +76,7 @@ jobs:
         run: npx nx run-many -t e2e-ci --verbose
 
       - name: Debug environment variables
-        run: env
+        run: npx nx report
 
       - name: Release with Nx
         run: npx nx release --yes
