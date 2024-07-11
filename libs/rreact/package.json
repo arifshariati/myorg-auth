@@ -1,7 +1,0 @@
-{
-  "name": "@myorg-auth/rreact",
-  "version": "0.8.0",
-  "publishConfig": {
-    "access": "public"
-  }
-}
