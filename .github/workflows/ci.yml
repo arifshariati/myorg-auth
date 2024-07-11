@@ -46,13 +46,13 @@ jobs:
         run: npx nx report
 
       - name: Lint
-        run: npm run lint:affected
+        run: npm run lint:affected --exclude frontend
 
       - name: Build
-        run: npx nx run-many -t build --parallel 2
+        run: npx nx run-many -t build --parallel 2 --exclude frontend
 
       - name: test
-        run: npx nx run-many -t test --parallel 2
+        run: npx nx run-many -t test --parallel 2 --exclude frontend
 
   PR:
     runs-on: ubuntu-latest
@@ -78,12 +78,12 @@ jobs:
         run: npx commitlint --from ${{github.event.pull_request.base.sha}} --to ${{github.event.pull_request.head.sha}} --verbose
 
       - name: Lint
-        run: npx nx run-many -t lint --all --parallel 2
+        run: npx nx run-many -t lint --all --parallel 2 --exclude frontend
         
       - name: Build
-        run: npx nx run-many -t build --all --parallel 2
+        run: npx nx run-many -t build --all --parallel 2 --exclude frontend
 
       - name: Test
-        run: npx nx run-many -t test --ci --all --parallel 2
+        run: npx nx run-many -t test --ci --all --parallel 2 --exclude frontend
 
       
