@@ -73,7 +73,7 @@ jobs:
         run: npx nx run-many -t test --exclude frontend --verbose
       
       - name: e2e
-        run: npx nx run-many -t e2e-ci --exclude frontend --verbose
+        run: npx nx run-many -t e2e-ci --exclude frontend frontend-e2e --verbose
 
       - name: Debug environment variables
         run: npx nx report
