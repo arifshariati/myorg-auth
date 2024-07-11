@@ -9,6 +9,7 @@ export const MyComponent = ({ children }: MyComponentProps) => {
       <h1>This is h1</h1>
       <p>This is paragraph</p>
       <p>Another P Tag</p>
+      <p>Another P Tag</p>
       {children}
     </div>
   );

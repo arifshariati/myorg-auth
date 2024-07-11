@@ -90,7 +90,7 @@
     },
     "version": {
       "conventionalCommits": true,
-      "preVersionCommand": "npx nx run-many -t build --verbose"
+      "preVersionCommand": "npx nx run-many -t build --exclude frontend --verbose"
     }
   }
 }
