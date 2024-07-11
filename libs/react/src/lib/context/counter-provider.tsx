@@ -2,7 +2,11 @@ import { createContext, useContext, useReducer } from 'react';
 const INCREMENT = 'INCREMENT';
 const DECREMENT = 'DECREMENT';
 
-const CounterContext = createContext<unknown>(null);
+type CounterContextType = {
+  count: number;
+  dispatch: React.Dispatch<{ type: string }>;
+};
+const CounterContext = createContext<CounterContextType | undefined>(undefined);
 
 const counterReducer =
   (
@@ -41,6 +45,11 @@ const CounterProvider = ({ children, add, subtract }: CounterProviderType) => {
   );
 };
 
-const useCounter = () => useContext(CounterContext);
+const useCounter = (): CounterContextType => {
+  const context = useContext(CounterContext);
+  if (!context)
+    throw new Error('useCounter must be used within a CounterProvider');
+  return context;
+};
 
 export { CounterProvider, useCounter, INCREMENT, DECREMENT };
