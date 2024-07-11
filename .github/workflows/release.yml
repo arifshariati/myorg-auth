@@ -79,7 +79,7 @@ jobs:
         run: npx nx report
 
       - name: Release with Nx
-        run: npx nx release --yes
+        run: npx nx release --yes --verbose
         env:
           GIT_USER_NAME: ${{secrets.GIT_USER_NAME}}
           GIT_USER_EMAIL: ${{secrets.GIT_USER_EMAIL}}
