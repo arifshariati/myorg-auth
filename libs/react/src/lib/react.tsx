@@ -7,6 +7,7 @@ export const MyComponent = ({ children }: MyComponentProps) => {
   return (
     <div>
       <h1>This is h1</h1>
+      <p>This is paragraph</p>
       {children}
     </div>
   );
