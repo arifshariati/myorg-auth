@@ -56,8 +56,15 @@
       "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
+    },
+    "nx-release-publish": {
+      "dependsOn": ["build"],
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
     }
   },
+
   "release": {
     "changelog": {
       "workspaceChangelog": {
@@ -68,10 +75,6 @@
     "version": {
       "conventionalCommits": true,
       "preVersionCommand": "npx nx run-many -t build --verbose"
-    },
-    "git": {
-      "commitMessage": "chore(@myorg-auth): publish {version}"
-    },
-    "projects": ["libs/*"]
+    }
   }
 }
