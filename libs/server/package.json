@@ -1,10 +1,18 @@
 {
   "name": "@myorg-auth/server",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arifshariati/myorg-auth",
+    "directory": "libs/server"
+  },
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "type": "commonjs",
+  "type": "module",
   "main": "./src/index.js",
-  "typings": "./src/index.d.ts"
+  "typings": "./src/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  }
 }
